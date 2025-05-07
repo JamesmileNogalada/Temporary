@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story Of My Life</title>
+  <link rel="stylesheet" href="story.css" />
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <ul class="nav-list">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="#">Story</a></li>
+        <li><a href="favorite.html">Favorite</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="signup-btn">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Story of My Life</h1>
+  </div>
+</section>
+
+<main>
+  <article id="story-content">
+
+    <div class="card fade-in">
+      <h2>Chapter 1: Early Stages</h2>
+      <img src="early.jpg" alt="Early Childhood" class="story-img" />
+      <p>Hi Guys! My name is Jamesmile C. Nogalada, born on March 11, 2004... (truncated for brevity)</p>
+    </div>
+
+  </article>
+</main>
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<footer>
+  <p>&copy; 2024–2025 Hiroshima (Journey). All rights reserved.</p>
+</footer>
+
+<script>
+ 
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  };
+  scrollTopBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const faders = document.querySelectorAll(".fade-in");
+  const appearOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("appear");
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
+</body>
+</html>
